@@ -102,9 +102,9 @@ LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1003288278602')) #Verificat
 LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-1003288278602')) #If Anyone Set Your Bot In Any Group And Set Shortner In That Group Then In This Channel The All Details Come
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
 
-TUTORIAL = environ.get("TUTORIAL", "https://t.me/SUPREME_BOTz")   # Tutorial link for verification
-TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/SUPREME_BOTz")   # Second tutorial link for verification
-TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/SUPREME_BOTz")   # Third tutorial link for verification
+TUTORIAL = environ.get("TUTORIAL", "https://t.me/Movie_Lord_Official/13")   # Tutorial link for verification
+TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/c/2500192654/8")   # Second tutorial link for verification
+TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/Movie_Lord_Official/13")   # Third tutorial link for verification
 
 # Verification (Must Fill All Veriables. Else You Got Error
 SHORTENER_API = environ.get("SHORTENER_API", "94204dbef474ab4576ec045c8a798e1ea4e74db5") # Shortener API key
@@ -122,8 +122,8 @@ THREE_VERIFY_GAP = int(environ.get('THREE_VERIFY_GAP', "43300"))
 # ============================
 # Channel & Group Links Configuration
 # ============================
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/SUPREME_BOTz') # Group link for the bot
-OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/SUPREME_BOTz') # Owner link for the bot
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/Movie_request_Lord_Official') # Group link for the bot
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/movie_lord_support_bot') # Owner link for the bot
 UPDATE_CHNL_LNK = environ.get('UPDATE_CHNL_LNK', 'https://t.me/SUPREME_BOTz') # Update channel link for the bot
 
 # ============================
@@ -136,7 +136,7 @@ PREMIUM_USER = [int(user) if id_pattern.search(user) else user for user in envir
 # ============================
 # Miscellaneous Configuration
 # ============================
-ULTRA_FAST_MODE = is_enabled(environ.get('ULTRA_FAST_MODE', "False"), True) # Set to True for fast search, False for original search
+ULTRA_FAST_MODE = is_enabled(environ.get('ULTRA_FAST_MODE', "True"), True) # Set to True for fast search, False for original search
 
 MAX_B_TN = environ.get("MAX_B_TN", "5") # Maximum number of buttons in a row (default: 5)
 PORT = int(environ.get("PORT", "8080"))  # Port for the web server (default: 8080)

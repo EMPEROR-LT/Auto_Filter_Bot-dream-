@@ -296,7 +296,7 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b><a href="https://t.me/SUPREME_BOTz">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/SUPREME_BOTz">[ ꧁𓆩𝕊𝕌ℙℝ𝔼𝕄𝔼 𝔹𝕆𝕋z𓆪꧂ ]</a></b>"""
+    CAPTION = """<b><a href="https://t.me/Movie_Lord_Official">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/Movie_Lord_premium">[ @Movie_Lord_premium ]</a></b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """

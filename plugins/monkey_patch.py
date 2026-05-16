@@ -22,6 +22,50 @@ pyro_log.setLevel(logging.WARNING)
 
 log = logging.getLogger(__name__)
 
+GLOBAL_THUMB = None
+GLOBAL_INPUT_PHOTO = None
+
+def clear_thumb_cache():
+    global GLOBAL_THUMB, GLOBAL_INPUT_PHOTO
+    GLOBAL_THUMB = None
+    GLOBAL_INPUT_PHOTO = None
+
+async def get_bot_thumb(client):
+    global GLOBAL_THUMB
+    if GLOBAL_THUMB is None:
+        from database.users_chats_db import db
+        thumb = await db.get_bot_setting(client.me.id, "BOT_THUMB", None)
+        if thumb:
+            GLOBAL_THUMB = await client.download_media(thumb)
+    if GLOBAL_THUMB and not os.path.exists(GLOBAL_THUMB):
+        GLOBAL_THUMB = None
+        return await get_bot_thumb(client)
+    return GLOBAL_THUMB
+
+async def get_bot_input_photo(client):
+    global GLOBAL_INPUT_PHOTO
+    if GLOBAL_INPUT_PHOTO is None:
+        path = await get_bot_thumb(client)
+        if path:
+            try:
+                r = await client.invoke(
+                    raw.functions.messages.UploadMedia(
+                        peer=raw.types.InputPeerSelf(),
+                        media=raw.types.InputMediaUploadedPhoto(
+                            file=await client.save_file(path)
+                        )
+                    )
+                )
+                if hasattr(r, "photo"):
+                    GLOBAL_INPUT_PHOTO = raw.types.InputPhoto(
+                        id=r.photo.id,
+                        access_hash=r.photo.access_hash,
+                        file_reference=r.photo.file_reference
+                    )
+            except Exception as e:
+                log.error(f"Error in get_bot_input_photo: {e}")
+    return GLOBAL_INPUT_PHOTO
+
 async def custom_send_cached_media(
         self: "Client",
         chat_id: Union[int, str],
@@ -50,11 +94,11 @@ async def custom_send_cached_media(
             "types.ForceReply"
         ] = None
     ) -> Optional["types.Message"]:
-        
+
         vidcover_file = None
         vidcover_media = None
         peer = await self.resolve_peer(chat_id)
-        
+
         reply_to = await utils.get_reply_to(
             client=self,
             chat_id=chat_id,
@@ -67,7 +111,7 @@ async def custom_send_cached_media(
             quote_entities=quote_entities,
             parse_mode=parse_mode
         )
-        
+
         try:
             if cover is not None:
                 if isinstance(cover, str):
@@ -111,6 +155,18 @@ async def custom_send_cached_media(
             pass
 
         media = utils.get_input_media_from_file_id(file_id)
+
+        bot_thumb = await get_bot_thumb(self)
+        if bot_thumb:
+            if isinstance(media, raw.types.InputMediaUploadedDocument):
+                media.thumb = await self.save_file(bot_thumb)
+                media.flags |= 4
+            elif isinstance(media, raw.types.InputMediaDocument):
+                bot_input_photo = await get_bot_input_photo(self)
+                if bot_input_photo:
+                    media.thumb = bot_input_photo
+                    media.flags |= 4
+
         if vidcover_file is not None:
             try:
                 media.video_cover = vidcover_file
@@ -186,7 +242,7 @@ async def custom_send_video(
         progress: Callable = None,
         progress_args: tuple = ()
     ) -> Optional["types.Message"]:
-    
+
         file = None
         vidcover_file = None
         vidcover_media = None
@@ -205,6 +261,10 @@ async def custom_send_video(
             parse_mode=parse_mode
         )
         try:
+            bot_thumb = await get_bot_thumb(self)
+            if thumb is None:
+                thumb = bot_thumb
+
             if cover is not None:
                 if isinstance(cover, str):
                     if os.path.isfile(cover):
@@ -243,7 +303,7 @@ async def custom_send_video(
                         access_hash=vidcover_media.photo.access_hash,
                         file_reference=vidcover_media.photo.file_reference
                     )
-            
+
             if isinstance(video, str):
                 if os.path.isfile(video):
                     thumb = await self.save_file(thumb)
@@ -276,6 +336,15 @@ async def custom_send_video(
                     )
                 else:
                     media = utils.get_input_media_from_file_id(video, FileType.VIDEO, ttl_seconds=(1 << 31) - 1 if view_once else ttl_seconds)
+                    if bot_thumb:
+                        if isinstance(media, raw.types.InputMediaUploadedDocument):
+                            media.thumb = await self.save_file(bot_thumb)
+                            media.flags |= 4
+                        elif isinstance(media, raw.types.InputMediaDocument):
+                            bot_input_photo = await get_bot_input_photo(self)
+                            if bot_input_photo:
+                                media.thumb = bot_input_photo
+                                media.flags |= 4
                     if vidcover_file is not None:
                         try:
                             media.video_cover = vidcover_file
@@ -603,8 +672,145 @@ async def custom_copy_message(
 
 
 
+async def custom_send_document(
+    self: "Client",
+    chat_id: Union[int, str],
+    document: Union[str, BinaryIO],
+    thumb: Union[str, BinaryIO] = None,
+    caption: str = "",
+    parse_mode: Optional["enums.ParseMode"] = None,
+    caption_entities: List["types.MessageEntity"] = None,
+    file_name: str = None,
+    force_document: bool = None,
+    disable_notification: bool = None,
+    message_thread_id: int = None,
+    business_connection_id: str = None,
+    reply_to_message_id: int = None,
+    reply_to_story_id: int = None,
+    reply_to_chat_id: Union[int, str] = None,
+    reply_to_monoforum_id: Union[int, str] = None,
+    quote_text: str = None,
+    quote_entities: List["types.MessageEntity"] = None,
+    schedule_date: datetime = None,
+    protect_content: bool = None,
+    allow_paid_broadcast: bool = None,
+    message_effect_id: int = None,
+    reply_markup: Union[
+        "types.InlineKeyboardMarkup",
+        "types.ReplyKeyboardMarkup",
+        "types.ReplyKeyboardRemove",
+        "types.ForceReply"
+    ] = None,
+    progress: Callable = None,
+    progress_args: tuple = ()
+) -> Optional["types.Message"]:
+
+    file = None
+    peer = await self.resolve_peer(chat_id)
+    reply_to = await utils.get_reply_to(
+        client=self,
+        chat_id=chat_id,
+        reply_to_message_id=reply_to_message_id,
+        reply_to_story_id=reply_to_story_id,
+        message_thread_id=message_thread_id,
+        reply_to_chat_id=reply_to_chat_id,
+        reply_to_monoforum_id=reply_to_monoforum_id,
+        quote_text=quote_text,
+        quote_entities=quote_entities,
+        parse_mode=parse_mode
+    )
+
+    try:
+        bot_thumb = await get_bot_thumb(self)
+        if thumb is None:
+            thumb = bot_thumb
+
+        if isinstance(document, str):
+            if os.path.isfile(document):
+                thumb = await self.save_file(thumb)
+                file = await self.save_file(document, progress=progress, progress_args=progress_args)
+                media = raw.types.InputMediaUploadedDocument(
+                    mime_type=self.guess_mime_type(document) or "application/zip",
+                    file=file,
+                    thumb=thumb,
+                    attributes=[
+                        raw.types.DocumentAttributeFilename(file_name=file_name or os.path.basename(document))
+                    ],
+                    force_file=force_document
+                )
+            elif re.match("^https?://", document):
+                media = raw.types.InputMediaDocumentExternal(
+                    url=document
+                )
+            else:
+                media = utils.get_input_media_from_file_id(document, FileType.DOCUMENT)
+                if bot_thumb:
+                    if isinstance(media, raw.types.InputMediaUploadedDocument):
+                        media.thumb = await self.save_file(bot_thumb)
+                        media.flags |= 4
+                    elif isinstance(media, raw.types.InputMediaDocument):
+                        bot_input_photo = await get_bot_input_photo(self)
+                        if bot_input_photo:
+                            media.thumb = bot_input_photo
+                            media.flags |= 4
+        else:
+            thumb = await self.save_file(thumb)
+            file = await self.save_file(document, progress=progress, progress_args=progress_args)
+            media = raw.types.InputMediaUploadedDocument(
+                mime_type=self.guess_mime_type(file_name or document.name) or "application/zip",
+                file=file,
+                thumb=thumb,
+                attributes=[
+                    raw.types.DocumentAttributeFilename(file_name=file_name or document.name)
+                ],
+                force_file=force_document
+            )
+
+        while True:
+            try:
+                rpc = raw.functions.messages.SendMedia(
+                    peer=peer,
+                    media=media,
+                    silent=disable_notification or None,
+                    reply_to=reply_to,
+                    random_id=self.rnd_id(),
+                    schedule_date=utils.datetime_to_timestamp(schedule_date),
+                    noforwards=protect_content,
+                    allow_paid_floodskip=allow_paid_broadcast,
+                    effect=message_effect_id,
+                    reply_markup=await reply_markup.write(self) if reply_markup else None,
+                    **await utils.parse_text_entities(self, caption, parse_mode, caption_entities)
+                )
+                if business_connection_id is not None:
+                    r = await self.invoke(
+                        raw.functions.InvokeWithBusinessConnection(
+                            connection_id=business_connection_id,
+                            query=rpc
+                        )
+                    )
+                else:
+                    r = await self.invoke(rpc)
+            except FilePartMissing as e:
+                await self.save_file(document, file_id=file.id, file_part=e.value)
+            else:
+                for i in r.updates:
+                    if isinstance(i, (raw.types.UpdateNewMessage,
+                                      raw.types.UpdateNewChannelMessage,
+                                      raw.types.UpdateNewScheduledMessage,
+                                      raw.types.UpdateBotNewBusinessMessage)):
+                        return await types.Message._parse(
+                            self, i.message,
+                            {i.id: i for i in r.users},
+                            {i.id: i for i in r.chats},
+                            is_scheduled=isinstance(i, raw.types.UpdateNewScheduledMessage),
+                            business_connection_id=business_connection_id
+                        )
+    except StopTransmission:
+        return None
+
 Client.send_cached_media = custom_send_cached_media
 Client.send_video = custom_send_video
+Client.send_document = custom_send_document
 types.Message.copy = custom_copy
 Client.copy_message = custom_copy_message
 

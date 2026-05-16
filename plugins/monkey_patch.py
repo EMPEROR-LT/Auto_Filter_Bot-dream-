@@ -162,10 +162,12 @@ async def custom_send_cached_media(
                 media.thumb = await self.save_file(bot_thumb)
                 media.flags |= 4
             elif isinstance(media, raw.types.InputMediaDocument):
-                bot_input_photo = await get_bot_input_photo(self)
-                if bot_input_photo:
-                    media.thumb = bot_input_photo
-                    media.flags |= 4
+                # InputMediaDocument (cached) doesn't support .thumb directly in MTProto.
+                # However, for videos we can use video_cover.
+                if vidcover_file is None:
+                    bot_input_photo = await get_bot_input_photo(self)
+                    if bot_input_photo:
+                        vidcover_file = bot_input_photo
 
         if vidcover_file is not None:
             try:
@@ -341,10 +343,10 @@ async def custom_send_video(
                             media.thumb = await self.save_file(bot_thumb)
                             media.flags |= 4
                         elif isinstance(media, raw.types.InputMediaDocument):
-                            bot_input_photo = await get_bot_input_photo(self)
-                            if bot_input_photo:
-                                media.thumb = bot_input_photo
-                                media.flags |= 4
+                            if vidcover_file is None:
+                                bot_input_photo = await get_bot_input_photo(self)
+                                if bot_input_photo:
+                                    vidcover_file = bot_input_photo
                     if vidcover_file is not None:
                         try:
                             media.video_cover = vidcover_file
@@ -748,11 +750,6 @@ async def custom_send_document(
                     if isinstance(media, raw.types.InputMediaUploadedDocument):
                         media.thumb = await self.save_file(bot_thumb)
                         media.flags |= 4
-                    elif isinstance(media, raw.types.InputMediaDocument):
-                        bot_input_photo = await get_bot_input_photo(self)
-                        if bot_input_photo:
-                            media.thumb = bot_input_photo
-                            media.flags |= 4
         else:
             thumb = await self.save_file(thumb)
             file = await self.save_file(document, progress=progress, progress_args=progress_args)

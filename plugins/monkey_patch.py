@@ -161,7 +161,7 @@ async def custom_send_cached_media(
             if isinstance(media, raw.types.InputMediaUploadedDocument):
                 media.thumb = await self.save_file(bot_thumb)
                 media.flags |= 4
-            elif isinstance(media, raw.types.InputMediaDocument):
+            elif hasattr(media, "thumb"):
                 bot_input_photo = await get_bot_input_photo(self)
                 if bot_input_photo:
                     media.thumb = bot_input_photo
@@ -340,7 +340,7 @@ async def custom_send_video(
                         if isinstance(media, raw.types.InputMediaUploadedDocument):
                             media.thumb = await self.save_file(bot_thumb)
                             media.flags |= 4
-                        elif isinstance(media, raw.types.InputMediaDocument):
+                        elif hasattr(media, "thumb"):
                             bot_input_photo = await get_bot_input_photo(self)
                             if bot_input_photo:
                                 media.thumb = bot_input_photo
@@ -748,7 +748,7 @@ async def custom_send_document(
                     if isinstance(media, raw.types.InputMediaUploadedDocument):
                         media.thumb = await self.save_file(bot_thumb)
                         media.flags |= 4
-                    elif isinstance(media, raw.types.InputMediaDocument):
+                    elif hasattr(media, "thumb"):
                         bot_input_photo = await get_bot_input_photo(self)
                         if bot_input_photo:
                             media.thumb = bot_input_photo

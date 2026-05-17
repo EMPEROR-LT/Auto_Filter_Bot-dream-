@@ -572,9 +572,6 @@ This Is An Open-Source Project. You Can Use It Freely, But Selling The Source Co
 • /remove_premium - <code>ʀᴇᴍᴏᴠᴇ ᴀɴʏ ᴜꜱᴇʀ ꜰʀᴏᴍ ᴘʀᴇᴍɪᴜᴍ.</code>
 • /premium_users - <code>ɢᴇᴛ ʟɪꜱᴛ ᴏꜰ ᴘʀᴇᴍɪᴜᴍ ᴜꜱᴇʀꜱ.</code>
 • /get_premium - <code>ɢᴇᴛ ɪɴꜰᴏ ᴏꜰ ᴀɴʏ ᴘʀᴇᴍɪᴜᴍ ᴜꜱᴇʀ.</code>
-• /set_thumb - <code>ᴀᴅᴅ ᴀ ᴛʜᴜᴍʙɴᴀɪʟ ꜰᴏʀ ᴍᴇᴅɪᴀ.</code>
-• /view_thumb - <code>ᴠɪᴇᴡ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴛʜᴜᴍʙɴᴀɪʟ.</code>
-• /del_thumb - <code>ᴅᴇʟᴇᴛᴇ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴛʜᴜᴍʙɴᴀɪʟ.</code>
 • /restart - <code>ʀᴇꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ.</code>
 • /maintenance - <code>ᴛᴜʀɴ ᴏɴ / ᴏꜰꜰ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ."""
 

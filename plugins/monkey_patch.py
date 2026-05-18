@@ -159,8 +159,16 @@ async def custom_send_cached_media(
         bot_thumb = await get_bot_thumb(self)
         if bot_thumb:
             if isinstance(media, raw.types.InputMediaUploadedDocument):
-                media.thumb = await self.save_file(bot_thumb)
+                if hasattr(media, "thumbnail"):
+                    media.thumbnail = await self.save_file(bot_thumb)
+                else:
+                    media.thumb = await self.save_file(bot_thumb)
                 media.flags |= 4
+            elif hasattr(media, "thumbnail"):
+                bot_input_photo = await get_bot_input_photo(self)
+                if bot_input_photo:
+                    media.thumbnail = bot_input_photo
+                    media.flags |= 4
             elif hasattr(media, "thumb"):
                 bot_input_photo = await get_bot_input_photo(self)
                 if bot_input_photo:
@@ -338,8 +346,16 @@ async def custom_send_video(
                     media = utils.get_input_media_from_file_id(video, FileType.VIDEO, ttl_seconds=(1 << 31) - 1 if view_once else ttl_seconds)
                     if bot_thumb:
                         if isinstance(media, raw.types.InputMediaUploadedDocument):
-                            media.thumb = await self.save_file(bot_thumb)
+                            if hasattr(media, "thumbnail"):
+                                media.thumbnail = await self.save_file(bot_thumb)
+                            else:
+                                media.thumb = await self.save_file(bot_thumb)
                             media.flags |= 4
+                        elif hasattr(media, "thumbnail"):
+                            bot_input_photo = await get_bot_input_photo(self)
+                            if bot_input_photo:
+                                media.thumbnail = bot_input_photo
+                                media.flags |= 4
                         elif hasattr(media, "thumb"):
                             bot_input_photo = await get_bot_input_photo(self)
                             if bot_input_photo:
@@ -746,8 +762,16 @@ async def custom_send_document(
                 media = utils.get_input_media_from_file_id(document, FileType.DOCUMENT)
                 if bot_thumb:
                     if isinstance(media, raw.types.InputMediaUploadedDocument):
-                        media.thumb = await self.save_file(bot_thumb)
+                        if hasattr(media, "thumbnail"):
+                            media.thumbnail = await self.save_file(bot_thumb)
+                        else:
+                            media.thumb = await self.save_file(bot_thumb)
                         media.flags |= 4
+                    elif hasattr(media, "thumbnail"):
+                        bot_input_photo = await get_bot_input_photo(self)
+                        if bot_input_photo:
+                            media.thumbnail = bot_input_photo
+                            media.flags |= 4
                     elif hasattr(media, "thumb"):
                         bot_input_photo = await get_bot_input_photo(self)
                         if bot_input_photo:

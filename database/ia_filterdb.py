@@ -136,7 +136,7 @@ async def save_file(media):
     try:
         await record.commit()
     except DuplicateKeyError:
-        # logger.info(f"[SKIP] DuplicateKey: '{file_name}' already exists in {target_db} DB.")
+        logger.info(f"[SKIP] Duplicate: '{file_name}' already exists in {target_db} DB.")
         return False, 0
     except Exception as e:
         logger.exception(

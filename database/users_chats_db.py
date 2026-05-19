@@ -387,12 +387,6 @@ class Database:
             upsert=True
         )
 
-    async def delete_bot_setting(self, bot_id, setting_key):
-        await self.botcol.update_one(
-            {'id': int(bot_id)},
-            {'$unset': {setting_key: ""}}
-        )
-
     async def connect_group(self, group_id, user_id):
         user= await self.connection.find_one({'_id': user_id})
         if user:

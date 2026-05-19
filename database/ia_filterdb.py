@@ -97,27 +97,21 @@ async def save_file(media):
     file_name = re.sub(r"\s+", " ", file_name).strip()
     saveMedia = Media
     target_db = "Primary"
-    try:
-        exists = await Media.count_documents({"file_id": file_id}, limit=1)
-        if exists:
-            # logger.info(f"[SKIP] '{file_name}' already in Primary DB.")
-            return False, 0
-
-        if MULTIPLE_DB:
-            exists2 = await Media2.count_documents({"file_id": file_id}, limit=1)
-            if exists2:
-                # logger.info(f"[SKIP] '{file_name}' already in Secondary DB.")
+    if MULTIPLE_DB:
+        try:
+            exists = await Media.count_documents({"file_id": file_id}, limit=1)
+            if exists:
+                logger.info(f"[SKIP] '{file_name}' already in Primary DB.")
                 return False, 0
-
             primary_db_size = await check_db_size(db)
             if primary_db_size >= 407:
                 saveMedia = Media2
                 target_db = "Secondary"
-                # logger.warning("Switching to Secondary DB due to size threshold.")
-    except Exception as e:
-        logger.error(
-            "Error during DB existence check; defaulting to primary DB.", exc_info=e
-        )
+                logger.warning("Switching to Secondary DB due to size threshold.")
+        except Exception as e:
+            logger.error(
+                "Error during MULTIPLE_DB check; defaulting to primary DB.", exc_info=e
+            )
     try:
         cover_to_use = getattr(getattr(media, "cover", None), "file_id", None)
         record = saveMedia(
@@ -136,7 +130,9 @@ async def save_file(media):
     try:
         await record.commit()
     except DuplicateKeyError:
-        logger.info(f"[SKIP] Duplicate: '{file_name}' already exists in {target_db} DB.")
+        logger.info(
+            f"[SKIP] DuplicateKey: '{file_name}' already exists in {target_db} DB."
+        )
         return False, 0
     except Exception as e:
         logger.exception(

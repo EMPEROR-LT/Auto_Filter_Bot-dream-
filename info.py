@@ -110,11 +110,11 @@ TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/Movie_Lord_Official/13")   
 SHORTENER_API = environ.get("SHORTENER_API", "94204dbef474ab4576ec045c8a798e1ea4e74db5") # Shortener API key
 SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "arolinks.com") # Shortener website
 
-SHORTENER_API2 = environ.get("SHORTENER_API2", "a032057e9b47f40a3c7d32a8d25e8bc4367bce7a")  # Shortener API key for second website
-SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "gplinks.com") # Shortener website for second website
+SHORTENER_API2 = environ.get("SHORTENER_API2", "94204dbef474ab4576ec045c8a798e1ea4e74db5")  # Shortener API key for second website
+SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "arolinks.com") # Shortener website for second website
 
-SHORTENER_API3 = environ.get("SHORTENER_API3", "94204dbef474ab4576ec045c8a798e1ea4e74db5")  
-SHORTENER_WEBSITE3 = environ.get("SHORTENER_WEBSITE3", "arolinks.com") # Shortener website for third website
+SHORTENER_API3 = environ.get("SHORTENER_API3", "15d4624e73446651966eb5a89be3e7ea6a273f82")  
+SHORTENER_WEBSITE3 = environ.get("SHORTENER_WEBSITE3", "vplink.in") # Shortener website for third website
 
 TWO_VERIFY_GAP = int(environ.get('TWO_VERIFY_GAP', "43200")) # Time gap for two-step verification in seconds (default: 20 minutes)
 THREE_VERIFY_GAP = int(environ.get('THREE_VERIFY_GAP', "43300"))    

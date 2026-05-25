@@ -102,8 +102,8 @@ LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1003288278602')) #Verificat
 LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-1003288278602')) #If Anyone Set Your Bot In Any Group And Set Shortner In That Group Then In This Channel The All Details Come
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
 
-TUTORIAL = environ.get("TUTORIAL", "https://t.me/Movie_Lord_Official/13")   # Tutorial link for verification
-TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/c/2500192654/8")   # Second tutorial link for verification
+TUTORIAL = environ.get("TUTORIAL", "https://t.me/c/2500192654/5")   # Tutorial link for verification
+TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/c/2500192654/5")   # Second tutorial link for verification
 TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/Movie_Lord_Official/13")   # Third tutorial link for verification
 
 # Verification (Must Fill All Veriables. Else You Got Error
@@ -117,7 +117,7 @@ SHORTENER_API3 = environ.get("SHORTENER_API3", "15d4624e73446651966eb5a89be3e7ea
 SHORTENER_WEBSITE3 = environ.get("SHORTENER_WEBSITE3", "vplink.in") # Shortener website for third website
 
 TWO_VERIFY_GAP = int(environ.get('TWO_VERIFY_GAP', "1200")) # Time gap for two-step verification in seconds (default: 20 minutes)
-THREE_VERIFY_GAP = int(environ.get('THREE_VERIFY_GAP', "43300"))    
+THREE_VERIFY_GAP = int(environ.get('THREE_VERIFY_GAP', "1200"))    
 
 # ============================
 # Channel & Group Links Configuration

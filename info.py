@@ -104,7 +104,7 @@ VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b834
 
 TUTORIAL = environ.get("TUTORIAL", "https://t.me/c/2500192654/5")   # Tutorial link for verification
 TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/c/2500192654/5")   # Second tutorial link for verification
-TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/Movie_Lord_Official/13")   # Third tutorial link for verification
+TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/c/2500192654/9")   # Third tutorial link for verification
 
 # Verification (Must Fill All Veriables. Else You Got Error
 SHORTENER_API = environ.get("SHORTENER_API", "94204dbef474ab4576ec045c8a798e1ea4e74db5") # Shortener API key

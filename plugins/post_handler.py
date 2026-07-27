@@ -10,7 +10,7 @@ from pyrogram.types import (
     Message,
 )
 from pyrogram.errors import MessageNotModified, MessageTooLong
-from plugins.Dreamxfutures.Imdbposter import get_movie_detailsx
+from plugins.Supremefutures.Imdbposter import get_movie_detailsx
 from info import ADMINS, MOVIE_UPDATE_CHANNEL, ABOVE_PREVIEW
 from utils import temp
 

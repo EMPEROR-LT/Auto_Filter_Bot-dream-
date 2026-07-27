@@ -21,7 +21,7 @@ from pyrogram import Client
 from info import *
 
 
-class dreamcinezoneXBot(Client):
+class SUPREME_BOTzXBot(Client):
 
     def __init__(self):
         super().__init__(
@@ -72,7 +72,7 @@ class dreamcinezoneXBot(Client):
                 yield message
                 current += 1
       
-dreamxbotz = dreamcinezoneXBot()
+supreme_botz = SUPREME_BOTzXBot()
 
 multi_clients = {}
 work_loads = {}

@@ -2,12 +2,12 @@ import asyncio
 import logging
 from info import *
 from pyrogram import Client
-from dreamxbotz.util.config_parser import TokenParser
-from . import multi_clients, work_loads, dreamxbotz
+from supreme_botz.util.config_parser import TokenParser
+from . import multi_clients, work_loads, supreme_botz
 
 
 async def initialize_clients():
-    multi_clients[0] = dreamxbotz
+    multi_clients[0] = supreme_botz
     work_loads[0] = 0
     all_tokens = TokenParser().parse_from_env()
     if not all_tokens:

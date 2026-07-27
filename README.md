@@ -140,7 +140,7 @@ Use at your own discretion and **always respect platform rules and copyrights**.
 
 ## 📜 License
 
-This project is licensed under the [MIT License](https://github.com/MrRaazz/DreamxBotz/blob/main/LICENSE)
+This project is licensed under the [MIT License](https://github.com/EMPEROR-LT/Auto_Filter_Bot-dream-/blob/main/LICENSE)
 
 ---
 

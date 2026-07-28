@@ -5,10 +5,10 @@ import logging
 import secrets
 import mimetypes
 from aiohttp.http_exceptions import BadStatusLine
-from supreme_botz.Bot import multi_clients, work_loads
-from supreme_botz.server.exceptions import FIleNotFound, InvalidHash
-from supreme_botz.util.custom_dl import ByteStreamer
-from supreme_botz.util.render_template import render_page
+from dreamxbotz.Bot import multi_clients, work_loads
+from dreamxbotz.server.exceptions import FIleNotFound, InvalidHash
+from dreamxbotz.util.custom_dl import ByteStreamer
+from dreamxbotz.util.render_template import render_page
 from info import *
 
 
@@ -16,7 +16,7 @@ routes = web.RouteTableDef()
 
 @routes.get("/favicon.ico")
 async def favicon_route_handler(request):
-    return web.FileResponse('supreme_botz/template/favicon.ico')
+    return web.FileResponse('dreamxbotz/template/favicon.ico')
 
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):

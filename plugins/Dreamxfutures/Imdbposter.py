@@ -7,7 +7,7 @@ from io import BytesIO
 from datetime import datetime
 from difflib import SequenceMatcher
 from PIL import Image
-from info import SUPREME_BOTz_IMAGE_FETCH, TMDB_API_KEY, MAX_LIST_ELM
+from info import DREAMXBOTZ_IMAGE_FETCH, TMDB_API_KEY, MAX_LIST_ELM
 
 logger = logging.getLogger(__name__)
 LONG_IMDB_DESCRIPTION = False
@@ -34,7 +34,7 @@ async def get_session():
     return _session
 
 async def fetch_image(url, size=(860, 1200)):
-    if not SUPREME_BOTz_IMAGE_FETCH:
+    if not DREAMXBOTZ_IMAGE_FETCH:
         logger.info("Image fetching is disabled.")
         return url
 

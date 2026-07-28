@@ -13,7 +13,7 @@ from pymediainfo import MediaInfo
 
 from database.ia_filterdb import get_file_details
 from info import BIN_CHANNEL
-from supreme_botz.util.file_properties import get_name
+from dreamxbotz.util.file_properties import get_name
 
 logger = logging.getLogger(__name__)
 

@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /SUPREME_BOTz
+WORKDIR /DreamxBotz
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip --root-user-action=ignore && \

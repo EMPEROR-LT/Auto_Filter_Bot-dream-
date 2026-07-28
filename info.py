@@ -17,7 +17,7 @@ def is_enabled(value, default):
 # ============================
 # Bot Information Configuration
 # ============================
-SESSION = environ.get('SESSION', 'supreme_botz_search')   # Session name for the bot
+SESSION = environ.get('SESSION', 'dreamxbotz_search')   # Session name for the bot
 API_ID = int(environ.get('API_ID', '26676619')) # API ID from my.telegram.org
 API_HASH = environ.get('API_HASH', 'd853fb72a50a894ec37ddb2fb756cbf1')  # API Hash from my.telegram.org
 BOT_TOKEN = environ.get('BOT_TOKEN', "8278402505:AAFbQNlETqNaRlunq4nPhdojhRDIhYr9i0c")    # Bot token from @BotFather
@@ -87,7 +87,7 @@ DATABASE_URI2 = environ.get('DATABASE_URI2', "")  # MongoDB URI for the second d
 # ============================
 MOVIE_UPDATE_NOTIFICATION = bool(environ.get('MOVIE_UPDATE_NOTIFICATION', True))  # Notification On (True) / Off (False)
 MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', '-1002949178653'))  # Notification of sent to your channel
-SUPREME_BOTz_IMAGE_FETCH = bool(environ.get('SUPREME_BOTz_IMAGE_FETCH', True))  # On (True) / Off (False)
+DREAMXBOTZ_IMAGE_FETCH = bool(environ.get('DREAMXBOTZ_IMAGE_FETCH', True))  # On (True) / Off (False)
 LINK_PREVIEW = bool(environ.get('LINK_PREVIEW', False)) # Shows link preview in notification msg instead of image
 ABOVE_PREVIEW = bool(environ.get('ABOVE_PREVIEW', True)) # Shows link preview above the text in notification msg if True else below the msg
 TMDB_API_KEY = environ.get('TMDB_API_KEY', '0819fa98e4c3d2c0826a159d055ed91e') # preffer to use your own tmdb API Key get it from https://www.themoviedb.org/settings/api

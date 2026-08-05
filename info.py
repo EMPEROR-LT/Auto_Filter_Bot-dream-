@@ -56,7 +56,7 @@ SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/Movie_Lord_Support')  #
 
 # FORCE_SUB 
 auth_req_channels = environ.get("AUTH_REQ_CHANNELS", "-1002880582811")# requst to join Channel for force sub (make sure bot is admin) only for bot ADMINS  
-auth_channels     = environ.get("AUTH_CHANNELS", "-1002880582811")# Channels for force sub (make sure bot is admin)
+auth_channels     = environ.get("AUTH_CHANNELS", "-1002500192654")# Channels for force sub (make sure bot is admin)
 
 # ============================
 # Payment Configuration
@@ -103,7 +103,7 @@ LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-1003288278602')) #If Anyo
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
 
 TUTORIAL = environ.get("TUTORIAL", "https://t.me/arolinks_how/3")   # Tutorial link for verification
-TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/arolinks_how/5")   # Second tutorial link for verification
+TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/arolinks_how/3")   # Second tutorial link for verification
 TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/c/2500192654/9")   # Third tutorial link for verification
 
 # Verification (Must Fill All Veriables. Else You Got Error
@@ -123,15 +123,15 @@ THREE_VERIFY_GAP = int(environ.get('THREE_VERIFY_GAP', "1200"))
 # Channel & Group Links Configuration
 # ============================
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/Movie_request_Lord_Official') # Group link for the bot
-OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/movie_lord_support_bot') # Owner link for the bot
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/movie_lord_supports') # Owner link for the bot
 UPDATE_CHNL_LNK = environ.get('UPDATE_CHNL_LNK', 'https://t.me/SUPREME_BOTz') # Update channel link for the bot
 
 # ============================
 # User Configuration
 # ============================
-auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
+auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '7597291420').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
-PREMIUM_USER = [int(user) if id_pattern.search(user) else user for user in environ.get('PREMIUM_USER', '').split()]
+PREMIUM_USER = [int(user) if id_pattern.search(user) else user for user in environ.get('PREMIUM_USER', '7597291420').split()]
 
 # ============================
 # Miscellaneous Configuration

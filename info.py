@@ -110,7 +110,7 @@ TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/arolinks_how/3")   # Third 
 SHORTENER_API = environ.get("SHORTENER_API", "15d4624e73446651966eb5a89be3e7ea6a273f82") # Shortener API key
 SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "vplink.in") # Shortener website
 
-SHORTENER_API2 = environ.get("SHORTENER_API2", 15d4624e73446651966eb5a89be3e7ea6a273f82")  # Shortener API key for second website
+SHORTENER_API2 = environ.get("SHORTENER_API2", "15d4624e73446651966eb5a89be3e7ea6a273f82")  # Shortener API key for second website
 SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "vplink.in") # Shortener website for second website
 
 SHORTENER_API3 = environ.get("SHORTENER_API3", "94204dbef474ab4576ec045c8a798e1ea4e74db5")  

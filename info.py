@@ -107,11 +107,11 @@ TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/arolinks_how/3")   # Second
 TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/c/2500192654/9")   # Third tutorial link for verification
 
 # Verification (Must Fill All Veriables. Else You Got Error
-SHORTENER_API = environ.get("SHORTENER_API", "94204dbef474ab4576ec045c8a798e1ea4e74db5") # Shortener API key
-SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "arolinks.com") # Shortener website
+SHORTENER_API = environ.get("SHORTENER_API", "15d4624e73446651966eb5a89be3e7ea6a273f82") # Shortener API key
+SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "vplink.in") # Shortener website
 
-SHORTENER_API2 = environ.get("SHORTENER_API2", "94204dbef474ab4576ec045c8a798e1ea4e74db5")  # Shortener API key for second website
-SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "arolinks.com") # Shortener website for second website
+SHORTENER_API2 = environ.get("SHORTENER_API2", 15d4624e73446651966eb5a89be3e7ea6a273f82")  # Shortener API key for second website
+SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "vplink.in") # Shortener website for second website
 
 SHORTENER_API3 = environ.get("SHORTENER_API3", "15d4624e73446651966eb5a89be3e7ea6a273f82")  
 SHORTENER_WEBSITE3 = environ.get("SHORTENER_WEBSITE3", "vplink.in") # Shortener website for third website
@@ -213,7 +213,7 @@ if 'DYNO' in environ:
     APP_NAME = environ.get('APP_NAME')
 else:
     ON_HEROKU = False
-BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', 'autofilterbot-dream-production.up.railway.app'))
+BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', 'autofilterbot-dream-production-4572.up.railway.app'))
 FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
 URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else "https://{}/".format(FQDN, PORT)
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))

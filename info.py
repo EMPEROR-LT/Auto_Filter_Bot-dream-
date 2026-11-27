@@ -61,7 +61,7 @@ auth_channels     = environ.get("AUTH_CHANNELS", "")# Channels for force sub (ma
 # ============================
 # Payment Configuration
 # ============================
-QR_CODE = environ.get('QR_CODE', 'https://vault.pictures/p/4779dda236c345e19d8fdd66d40752f5')    # QR code image for payments
+QR_CODE = environ.get('QR_CODE', 'https://ibb.co/21hPSmVY')    # QR code image for payments
 OWNER_UPI_ID = environ.get('OWNER_UPI_ID', 'lokesh.your.papa@fam')    # Owner UPI ID for payments
 
 STAR_PREMIUM_PLANS = {
@@ -213,8 +213,8 @@ if 'DYNO' in environ:
     APP_NAME = environ.get('APP_NAME')
 else:
     ON_HEROKU = False
-BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', 'autofilterbot-dream-production-4572.up.railway.app'))
-FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
+BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+FQDN = str(getenv('FQDN',172.31.16.218:26336)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
 URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else "https://{}/".format(FQDN, PORT)
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
 WORKERS = int(environ.get('WORKERS', '4'))
